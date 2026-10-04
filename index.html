@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Indian Army — Realistic App Prototype</title>
+<style>
+:root{color-scheme:dark;--bg:#07110d;--panel:#0d1b15;--panel2:#13251c;--line:#294337;--text:#f4f2e8;--muted:#aeb9b1;--gold:#d9b24c}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#050b08;color:var(--text)}
+#app{min-height:100vh;background:radial-gradient(circle at 80% 0%,#183628,#07110d 42%,#050b08)}
+.top{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid #1e352a;background:#050c09}
+.brand{display:flex;gap:12px;align-items:center;font-weight:900}
+.crest{width:42px;height:42px;border:1px solid #806829;border-radius:50%;display:grid;place-items:center;color:#d9b24c;font-size:21px}
+.nav{display:flex;gap:8px;overflow-x:auto}
+.nav button{background:transparent;border:1px solid transparent;color:#b8c3bd;padding:10px 14px;border-radius:10px;cursor:pointer;white-space:nowrap}
+.nav button.active,.nav button:hover{background:#16281f;border-color:#304b3d;color:#fff}
+.wrap{max-width:1240px;margin:auto;padding:28px 5vw 44px}
+.hero{min-height:430px;border:1px solid #365445;border-radius:24px;overflow:hidden;position:relative;background:linear-gradient(120deg,#06100b,#07120d 44%,#263e35)}
+.mountains{position:absolute;inset:auto 0 0;height:58%;background:linear-gradient(135deg,transparent 25%,#263e35 25.2% 34%,transparent 34.2%),linear-gradient(45deg,transparent 42%,#1c3329 42.2% 51%,transparent 51.2%)}
+.copy{position:relative;z-index:2;padding:56px 54px;max-width:650px}
+.eyebrow{font-size:13px;letter-spacing:3px;font-weight:800}
+.copy h1{font-size:clamp(42px,6vw,78px);line-height:.94;margin:14px 0;letter-spacing:-3px}
+.copy h1 span{color:#d9b24c}
+.copy p{color:#d2d9d4;max-width:520px;font-size:17px;line-height:1.6}
+.flag{display:flex;width:180px;height:8px;margin:22px 0}
+.flag i{flex:1}.s{background:#e8752f}.w{background:#f1f1e8}.g{background:#13864b}
+.soldier{position:absolute;right:8%;bottom:0;width:270px;height:360px}
+.head{position:absolute;top:34px;left:92px;width:76px;height:76px;border-radius:46%;background:#604b3b;border:5px solid #1a241e}
+.helmet{position:absolute;top:18px;left:78px;width:104px;height:48px;border-radius:60px 60px 20px 20px;background:#526348;border:5px solid #172019}
+.body{position:absolute;top:105px;left:50px;width:160px;height:230px;border-radius:48px 48px 18px 18px;background:#3d4b37;border:5px solid #182119}
+.arm{position:absolute;width:52px;height:180px;border-radius:28px;background:#303d2e;top:120px}
+.arm.a{left:25px;transform:rotate(12deg)}.arm.b{right:12px;transform:rotate(-18deg)}
+.rifle{position:absolute;width:210px;height:18px;background:#111816;border:3px solid #344039;right:-20px;top:190px;transform:rotate(76deg);border-radius:10px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+.card{background:linear-gradient(145deg,#14271e,#0b1712);border:1px solid #294638;border-radius:18px;padding:20px;min-height:140px;cursor:pointer}
+.ico{font-size:28px;margin-bottom:12px}.card h3{margin:0 0 6px}.card p{margin:0;color:#aeb9b1;font-size:13px}
+.section{margin-top:28px;display:none}.section.show{display:block}
+.section h2{font-size:26px;margin:0 0 14px}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.item{padding:16px;background:#0d1a14;border:1px solid #233a2e;border-radius:14px}
+.item strong{display:block;margin-bottom:6px}.item span{color:#9eaaa3;font-size:13px}
+.bottom{display:flex;justify-content:center;margin-top:30px;color:#83928a;font-size:12px}
+.toast{position:fixed;right:22px;bottom:22px;background:#182d23;border:1px solid #496454;padding:13px 16px;border-radius:12px;opacity:0;transition:.25s}
+.toast.on{opacity:1}
+@media(max-width:850px){.cards{grid-template-columns:repeat(2,1fr)}.soldier{opacity:.45;right:-30px}.copy{padding:42px 28px}.list{grid-template-columns:1fr}}
+@media(max-width:520px){.cards{grid-template-columns:1fr}.copy h1{font-size:48px}.copy p{font-size:15px}}
+</style>
+</head>
+
+<body>
+<div id="app">
+
+<header class="top">
+<div class="brand"><div class="crest">⚔</div><span>INDIAN ARMY</span></div>
+<nav class="nav">
+<button class="active" data-page="home">Home</button>
+<button data-page="news">News</button>
+<button data-page="recruitment">Recruitment</button>
+<button data-page="study">Study</button>
+<button data-page="gallery">Gallery</button>
+<button data-page="about">About</button>
+</nav>
+</header>
+
+<main class="wrap">
+
+<section id="home" class="page">
+<div class="hero">
+<div class="mountains"></div>
+<div class="soldier">
+<div class="helmet"></div><div class="head"></div><div class="body"></div>
+<div class="arm a"></div><div class="arm b"></div><div class="rifle"></div>
+</div>
+
+<div class="copy">
+<div class="eyebrow">SERVICE • SACRIFICE • NATION</div>
+<h1>INDIAN<br><span>ARMY</span></h1>
+<div class="flag"><i class="s"></i><i class="w"></i><i class="g"></i></div>
+<p>A realistic Indian Army–inspired app interface for learning, recruitment information, defence updates and stories of service.</p>
+<button onclick="show('recruitment')" style="background:#d9b24c;color:#111;border:0;border-radius:10px;padding:12px 18px;font-weight:900;cursor:pointer">Explore Recruitment →</button>
+</div>
+</div>
+
+<div class="cards">
+<div class="card" onclick="show('recruitment')"><div class="ico">🎖️</div><h3>Recruitment</h3><p>Explore entry routes and preparation.</p></div>
+<div class="card" onclick="show('news')"><div class="ico">📰</div><h3>Defence News</h3><p>Defence updates dashboard.</p></div>
+<div class="card" onclick="show('study')"><div class="ico">📚</div><h3>Exam Preparation</h3><p>Study material and practice.</p></div>
+<div class="card" onclick="show('gallery')"><div class="ico">📷</div><h3>Gallery</h3><p>Photos, stories and inspiration.</p></div>
+</div>
+</section>
+
+<section id="news" class="section page">
+<h2>Defence News</h2>
+<div class="list">
+<div class="item"><strong>Daily Briefing</strong><span>Verified defence updates and announcements.</span></div>
+<div class="item"><strong>Technology</strong><span>Modern defence technology and innovation stories.</span></div>
+<div class="item"><strong>Training</strong><span>Fitness, discipline and preparation content.</span></div>
+<div class="item"><strong>Service Stories</strong><span>Respectful stories about courage and service.</span></div>
+</div>
+</section>
+
+<section id="recruitment" class="section page">
+<h2>Recruitment Hub</h2>
+<div class="list">
+<div class="item"><strong>Entry Information</strong><span>Official eligibility and application information.</span></div>
+<div class="item"><strong>Exam Preparation</strong><span>Practice tests, notes and revision modules.</span></div>
+<div class="item"><strong>Fitness</strong><span>Training planner and progress tracking.</span></div>
+<div class="item"><strong>Notifications</strong><span>Application and exam reminders.</span></div>
+</div>
+</section>
+
+<section id="study" class="section page">
+<h2>Exam Preparation</h2>
+<div class="list">
+<div class="item"><strong>📖 General Knowledge</strong><span>Ready-made notes and topic-wise revision.</span></div>
+<div class="item"><strong>🧠 Practice Questions</strong><span>Practice questions for regular preparation.</span></div>
+<div class="item"><strong>🏃 Fitness Planner</strong><span>Track running, strength and daily goals.</span></div>
+<div class="item"><strong>⏱️ Daily Target</strong><span>Build a consistent study routine.</span></div>
+</div>
+
+<div style="margin-top:18px;padding:20px;background:#14271e;border:1px solid #294638;border-radius:18px">
+<h3>🎯 Mock Test — 10 Questions</h3>
+<p style="color:#aeb9b1">Answer 10 questions and see your final score.</p>
+<button id="startBtn" onclick="startTest()" style="background:#d9b24c;color:#111;border:0;border-radius:10px;padding:11px 16px;font-weight:900;cursor:pointer">Start Test →</button>
+
+<div id="test" style="display:none;margin-top:16px">
+<div id="progress"></div>
+<strong id="question"></strong>
+<div id="answers" style="display:grid;gap:8px;margin-top:10px"></div>
+<div id="result" style="margin-top:12px;color:#d9b24c;font-weight:800"></div>
+<button id="nextBtn" onclick="nextQuestion()" style="display:none;margin-top:12px;background:#d9b24c;color:#111;border:0;border-radius:10px;padding:10px 15px;font-weight:900">Next →</button>
+<button id="restartBtn" onclick="startTest()" style="display:none;margin-top:12px;background:#294638;color:#fff;border:1px solid #567565;border-radius:10px;padding:10px 15px;font-weight:900">Restart Test</button>
+</div>
+</div>
+</section>
+
+<section id="gallery" class="section page">
+<h2>Army Gallery</h2>
+<div class="list">
+<div class="item"><strong>🏔️ Training & Adventure</strong><span>Training and adventure images.</span></div>
+<div class="item"><strong>🇮🇳 Service Stories</strong><span>Stories celebrating courage and service.</span></div>
+<div class="item"><strong>🎖️ Equipment</strong><span>Educational defence equipment information.</span></div>
+<div class="item"><strong>📸 Your Gallery</strong><span>A future section for your own images.</span></div>
+</div>
+</section>
+
+<section id="about" class="section page">
+<h2>About This App</h2>
+<div class="item">
+<strong>🇮🇳 Independent Indian Army–inspired app</strong>
+<span>This is an independent educational prototype. It is not an official Indian Army application. Recruitment and defence information should always be checked against official government sources.</span>
+</div>
+
+<div class="item" style="margin-top:12px">
+<strong>📱 Free App Option</strong>
+<span>Use this app free as an installable website on your phone. No Play Store developer fee is needed for this free option.</span>
+</div>
+
+<div class="item" style="margin-top:12px">
+<strong>✅ Ready for use</strong>
+<span>Home, Defence News, Recruitment, Study, Mock Test and Gallery screens are included.</span>
+</div>
+</section>
+
+<div class="bottom">Independent Prototype • Educational Use • Mobile Responsive</div>
+</main>
+<div id="toast" class="toast"></div>
+</div>
+
+<script>
+const pages=[...document.querySelectorAll('.page')];
+
+function show(id){
+pages.forEach(p=>p.classList.toggle('show',p.id===id));
+document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const questions=[
+{q:'What is the capital of India?',a:['New Delhi','Mumbai','Kolkata','Chennai'],c:0},
+{q:'What is the national animal of India?',a:['Lion','Tiger','Elephant','Leopard'],c:1},
+{q:'Which planet is known as the Red Planet?',a:['Venus','Mars','Jupiter','Mercury'],c:1},
+{q:'How many colours are there in the Indian national flag?',a:['2','3','4','5'],c:1},
+{q:'Which is the largest state of India by area?',a:['Maharashtra','Rajasthan','Madhya Pradesh','Uttar Pradesh'],c:1},
+{q:'Who wrote the Indian national anthem?',a:['Rabindranath Tagore','Bankim Chandra Chattopadhyay','Mahatma Gandhi','Sarojini Naidu'],c:0},
+{q:'Which force guards India’s land borders?',a:['Indian Army','Indian Navy','Indian Air Force','Coast Guard'],c:0},
+{q:'What is the currency of India?',a:['Rupee','Dollar','Taka','Yen'],c:0},
+{q:'Which is the highest civilian award in India?',a:['Padma Shri','Padma Bhushan','Bharat Ratna','Padma Vibhushan'],c:2},
+{q:'How many states are there in India?',a:['26','27','28','29'],c:2}
+];
+
+let qi=0,score=0,answered=false;
+
+function startTest(){
+qi=0;score=0;answered=false;
+document.getElementById('startBtn').style.display='none';
+document.getElementById('test').style.display='block';
+document.getElementById('restartBtn').style.display='none';
+renderQuestion();
+}
+
+function renderQuestion(){
+const x=questions[qi];
+document.getElementById('progress').textContent='Question '+(qi+1)+' / 10 • Score: '+score;
+document.getElementById('question').textContent=x.q;
+document.getElementById('result').textContent='';
+document.getElementById('nextBtn').style.display='none';
+answered=false;
+
+document.getElementById('answers').innerHTML=x.a.map((v,i)=>
+'<button onclick="answer('+i+')" style="padding:10px;border-radius:9px;border:1px solid #294638;background:#102118;color:#fff;cursor:pointer;text-align:left">'+v+'</button>'
+).join('');
+}
+
+function answer(i){
+if(answered)return;
+answered=true;
+const x=questions[qi];
+const buttons=[...document.querySelectorAll('#answers button')];
+
+if(i===x.c){
+score++;
+document.getElementById('result').textContent='✅ Correct!';
+}else{
+document.getElementById('result').textContent='❌ Wrong. Correct answer: '+x.a[x.c];
+}
+
+buttons.forEach(b=>b.disabled=true);
+document.getElementById('progress').textContent='Question '+(qi+1)+' / 10 • Score: '+score;
+document.getElementById('nextBtn').style.display='inline-block';
+}
+
+function nextQuestion(){
+if(qi<9){
+qi++;
+renderQuestion();
+}else{
+document.getElementById('question').textContent='🎉 Test Complete!';
+document.getElementById('answers').innerHTML='';
+document.getElementById('result').textContent='Final Score: '+score+' / 10';
+document.getElementById('nextBtn').style.display='none';
+document.getElementById('restartBtn').style.display='inline-block';
+document.getElementById('progress').textContent='Mock Test Finished';
+}
+}
+
+show('home');
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>show(b.dataset.page)));
+</script>
+</body>
+</html>
